@@ -7,11 +7,13 @@
 <script>
 // @ is an alias to /src
 import Article from '../components/Article.vue'
+import Pagination from '@/components/Pagination.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    Article
+    Article,
+    Pagination
 
   },
   data(){
@@ -22,6 +24,7 @@ export default {
   beforeCreate(){
   },
   async created(){
+    window.document.title='Home'
     this.isAuthenticated=this.$store.state.isAuthenticated
     
   

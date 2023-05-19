@@ -29,6 +29,7 @@ export default {
         }
     },
     created(){
+        window.document.title='confirm Delete?'
         console.log(this.$store.state.isAuthenticated)
         console.log(this.$store.state.Token)
     },

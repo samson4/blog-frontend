@@ -52,11 +52,12 @@ import axios from 'axios'
          }
         const response = await axios.post("http://localhost:8000/api/token/",formdata)
         const response_data = response.data
+        console.log(response_data)
          sessionStorage.setItem('access',response_data.access)
          sessionStorage.setItem('refresh',response_data.refresh)
          this.$store.commit('loginUser',response_data.access)
          this.$router.push('/')
-         this.$router.push(-2)
+        //  this.$router.push(-2)
         }catch (error) {
           this.errors.push(error.response.data)
          }

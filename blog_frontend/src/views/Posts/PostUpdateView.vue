@@ -56,7 +56,7 @@ export default {
     }
 },
  async created(){
-    
+    window.document.title = 'Update Profile'
     const response = await  this.fetchPost(this.id)
     console.log(response)
     this.Post = response

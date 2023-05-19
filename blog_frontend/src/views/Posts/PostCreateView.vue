@@ -63,6 +63,7 @@ export default {
         }
     },
     created(){
+        window.document.title='New Post'
         const token = sessionStorage.getItem('access')
                 if(token){
                     console.log(token)

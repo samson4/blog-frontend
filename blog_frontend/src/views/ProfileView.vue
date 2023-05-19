@@ -33,21 +33,23 @@
   <div class="mb-3">
     <label  class="form-label">Image</label>
     <p>Currently: <a :href="profileImage.image_url"> {{profileImage.image_url}}</a></p>
-    <p>Change: <input type="file" @change="selectfile"></p>
+    <p>Change: <input :value="profileImage.image_url" type="file" @change="selectfile"></p>
   </div>
   <button type="submit" class="btn btn-outline-info mb-3" v-if="!errors.length">Update</button>
     </form>
+    
     <div class="mt-3">
       <div v-for="error in errors" :key="error">
         <h1 class="error-msg">{{error}}</h1>
       </div>
     </div>
 </div>
+
+
 </template>
 
 <script>
 
-import { file } from '@babel/types';
 import axios from 'axios';
 export default {
 name:'Profile',
@@ -108,7 +110,8 @@ async created(){
 methods:{
   async updateUser(e){
     e.preventDefault()
-    const token = sessionStorage.getItem('access')
+    try {
+      const token = sessionStorage.getItem('access')
     const config = {
         headers:{
             Authorization:`Bearer ${token}`
@@ -126,6 +129,11 @@ methods:{
     this.$router.go(0)
 
   }
+      
+    } catch (error) {
+      console.log(error)
+    }
+    
 },
 selectfile(e){
   const formdata = new FormData()

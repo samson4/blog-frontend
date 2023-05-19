@@ -13,16 +13,22 @@
     <p class="article-content">{{post.content}} </p>
   </div>
 </article>
+
     </div>
+    <Pagination @next='fetchNext($event)'/>
   </div>
+  
 </template>
 
 <script>
 import axios from 'axios'
 import moment from 'moment'
-
+import Pagination from './Pagination.vue'
 
 export default {
+  components:{
+    Pagination
+  },
   data(){
     return{
       blogPosts:[],
@@ -30,9 +36,18 @@ export default {
     }
   },
   async created(){
+
     const response = await axios.get("http://localhost:8000/")
     const response_data = response.data
-    this.blogPosts = response_data
+    this.blogPosts = response_data.results
+  },
+  methods:{
+    async fetchNext(pnum){
+      console.log(pnum)
+      const response = await axios.get(`http://localhost:8000/?page=${pnum}`)
+      this.blogPosts = response.data.results
+      console.log(response.data)
+    }
   }
 }
 </script>
