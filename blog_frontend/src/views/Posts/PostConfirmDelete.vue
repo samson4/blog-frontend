@@ -39,7 +39,7 @@ export default {
         },
         async ConfirmDelete(){
             try {
-                token = sessionStorage.getItem('access')
+               const token = sessionStorage.getItem('access')
                 if(token !== ''){
                     const config = {
                     headers:{
@@ -47,7 +47,7 @@ export default {
                     }
                 }
             const response = await axios.delete(`http://localhost:8000/post/${this.id}/delete/`,config)
-            
+                this.$router.push('/')
                 }
                 
             }catch (error){

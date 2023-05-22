@@ -26,5 +26,9 @@ export default {
 </script>
 
 <style>
-
+a{
+  
+  color: #0dcaf1;
+  text-decoration: inherit;
+}
 </style>

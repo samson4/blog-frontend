@@ -51,6 +51,7 @@ export default {
                     }
                     const response = await axios.post('http://localhost:8000/post/new/',formdata,config)
                     console.log(response.data)
+                    this.router.go("/")
 
                 }else{
                     this.errors.push("Token is invalid or expired")

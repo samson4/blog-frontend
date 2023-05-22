@@ -8,6 +8,7 @@ import PostDetailView from '../views/Posts/PostDetailView.vue'
 import PostCreateView from '../views/Posts/PostCreateView.vue'
 import PostConfirmDelete from '../views/Posts/PostConfirmDelete.vue'
 import PostUpdateView from '../views/Posts/PostUpdateView.vue'
+import UserPostsView from '../views/User/UserPostsView.vue'
 
 const routes = [
   {
@@ -62,7 +63,13 @@ const routes = [
     path:'/post/:id/update',
     name:'PostUpdateView',
     component:PostUpdateView
-  }
+  },
+  
+  {
+    path:'/posts/:username',
+    name:'UserPostsView',
+    component:UserPostsView
+  },
 
   
 

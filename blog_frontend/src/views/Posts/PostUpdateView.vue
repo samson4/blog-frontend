@@ -47,7 +47,7 @@ export default {
                 formdata.append('content',this.content)
                 const response = await axios.put(`http://localhost:8000/post/${this.id}/update/`,formdata,config)
                 console.log(response.data)
-                this.$router.go(0)
+                this.$router.push(`/post/${this.id}`)
                 }
                 
             }catch (error){

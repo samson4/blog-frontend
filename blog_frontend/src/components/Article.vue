@@ -6,8 +6,8 @@
     <img class="rounded-circle article-img" :src="post.author.profile.make_thumbnail" alt="">
   <div class="media-body">
     <div class="article-metadata">
-      <a class="mr-2">{{post.author.username}} </a>
-      <small class="text-muted">{{moment(post.date_posted).format(' MMM D Y')}}</small>
+      <router-link :to="{name:'UserPostsView', params:{username:post.author.username} }" class="mr-2">{{post.author.username}} </router-link>
+      <small class="text-muted">{{moment(post.date_posted).format(' MMMM D,Y')}}</small>
     </div>
     <h2><router-link :to="{name:'Post-Detail' , params:{id:post.id}}" class="article-title"> {{post.title}} </router-link></h2>
     <p class="article-content">{{post.content}} </p>

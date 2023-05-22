@@ -5,7 +5,7 @@
     <img class="rounded-circle article-img" :src="Post.author.profile.image_url" alt="">
   <div class="media-body">
     <div class="article-metadata">
-      <a class="mr-2">{{Post.author.username}} </a>
+      <router-link :to="{name:'UserPostsView', params:{username:Post.author.username} }" class="mr-2">{{Post.author.username}} </router-link>
       <small class="text-muted"> {{moment(Post.date_posted).format(' MMM D Y ')}}</small>
       <div>
     <a v-show="postowner == true" class="btn btn-secondary btn-sm mt-1 mb-1" :href="`/post/${id}/update/`">Update</a>
