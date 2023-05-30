@@ -24,7 +24,7 @@ export default createStore({
       }
     },
     
-    loginUser(state,status){
+    loginUser(state,status,Token){
       state.isAuthenticated=true
       state.token = Token
     },

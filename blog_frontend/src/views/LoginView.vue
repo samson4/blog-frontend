@@ -43,7 +43,7 @@ import axios from 'axios'
       },
       methods:{
         async loginUser(){
-         try {
+         
           sessionStorage.removeItem('access')
         sessionStorage.removeItem('refresh')
          const formdata = {
@@ -55,12 +55,10 @@ import axios from 'axios'
         console.log(response_data)
          sessionStorage.setItem('access',response_data.access)
          sessionStorage.setItem('refresh',response_data.refresh)
+         console.log(response_data.access)
          this.$store.commit('loginUser',response_data.access)
-         
-         this.$router.go(-3)
-        }catch (error) {
-          this.errors.push(error.response.data)
-         }
+         this.$router.replace({name:'home'})
+         this.$router.go(-1)
         }
       }
     }

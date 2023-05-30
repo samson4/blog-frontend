@@ -1,15 +1,16 @@
 <template>
   <div class="content-section">
-    <form @submit.prevent = 'ConfirmDelete()' id="createPostForm">
+    <form  id="createPostForm">
        <fieldset class="form-group">
         <legend class="border-bottom mb-4">Delete Post</legend>
         <h2>Are You sure you want to delete the post?</h2>
        </fieldset> 
-  <button type="submit" class="btn btn-outline-danger mb-3 py-2" :disabled="errors.length" >Yes,Delete</button>
+  <button @click = 'ConfirmDelete' type="submit" class="btn btn-outline-danger mb-3 py-2" :disabled="errors.length" >Yes,Delete</button>
   <b class="px-1"> </b>
-  <button @click="cancelReq()" class="btn btn-outline-secondary mb-3 "   href="">Cancel</button>
-       
-</form>
+  <button @click="cancelReq" class="btn btn-outline-secondary mb-3 "   href="">Cancel</button>   
+
+  </form>
+  
     <div v-if="errors.length" class="mt-3">
       <div v-for="error in errors" :key="error">
         <p class="error-msg">{{error}}</p>
@@ -31,13 +32,14 @@ export default {
     created(){
         window.document.title='confirm Delete?'
         console.log(this.$store.state.isAuthenticated)
-        console.log(this.$store.state.Token)
+        console.log(this.$store.state.token)
     },
     methods:{
         cancelReq(){
-            this.$router.go(-1)
+            this.$router.push(`/post/${this.id}`)
         },
-        async ConfirmDelete(){
+        async ConfirmDelete(e){
+            e.preventDefault()
             try {
                const token = sessionStorage.getItem('access')
                 if(token !== ''){

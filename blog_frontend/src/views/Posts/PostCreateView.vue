@@ -51,7 +51,7 @@ export default {
                     }
                     const response = await axios.post('http://localhost:8000/post/new/',formdata,config)
                     console.log(response.data)
-                    this.router.go("/")
+                    this.$router.replace({name:'home'})
 
                 }else{
                     this.errors.push("Token is invalid or expired")
@@ -67,7 +67,7 @@ export default {
         window.document.title='New Post'
         const token = sessionStorage.getItem('access')
                 if(token){
-                    console.log(token)
+                    console.log(token !== '')
                 }else{
                     this.errors.push("Token is invalid or expired")
                 }

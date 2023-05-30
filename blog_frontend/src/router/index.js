@@ -9,6 +9,7 @@ import PostCreateView from '../views/Posts/PostCreateView.vue'
 import PostConfirmDelete from '../views/Posts/PostConfirmDelete.vue'
 import PostUpdateView from '../views/Posts/PostUpdateView.vue'
 import UserPostsView from '../views/User/UserPostsView.vue'
+import store from '@/store'
 
 const routes = [
   {
@@ -41,18 +42,33 @@ const routes = [
   {
     path:'/profile',
     name:'Profile',
-    component:ProfileView
+    component:ProfileView,
+    beforeEnter:(to,from,next)=>{
+      if(store.state.isAuthenticated==false){
+        next('/login')
+      }else{
+        next()
+      }
+    }
   },
   {
     path:'/post/:id',
     name:'Post-Detail',
     component:PostDetailView,
-    props:true
+    props:true,
+  
   },
   {
     path:'/post/new',
     name:'CreatePost',
-    component:PostCreateView
+    component:PostCreateView,
+    beforeEnter:(to,from,next)=>{
+      if(store.state.isAuthenticated==false){
+        next('/login')
+      }else{
+        next()
+      }
+    }
   },
   {
     path:'/post/:id/delete',
