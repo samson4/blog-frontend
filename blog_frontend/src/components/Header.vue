@@ -12,9 +12,19 @@
           <a href="/" class="nav-item nav-link">Home</a>
           <router-link to="about"   class="nav-item nav-link">About</router-link>
         </div>
+
+        <div class="mx-auto">
+          <form @submit.prevent="performSearch()">
+            <label for="search" >Search</label>
+            <input type="text" name="search" id="search" v-model="search">
+          </form>
+        </div>
+
+       <b class="mx-auto"></b>
+       
         <!-- Navbar Right Side -->
-        
-        <div class="navbar-nav navbar-right-side">
+       
+        <div class="navbar-nav navbar-right-side mx-auto ">
          
           <a v-show="!isAuthenticated" href="/login" class="nav-item nav-link">Login</a>
           <a v-show="isAuthenticated" href="/post/new/" class="nav-item nav-link"><i class="fa-regular fa-plus"></i> New Post</a>
@@ -31,11 +41,13 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
   data(){
     return{
       isAuthenticated:null,
+      search:''
       
     }
   },
@@ -47,7 +59,12 @@ export default {
     logoutUser(){
       this.$store.commit('logoutUser')
       this.$router.go(0)
+    },
+    async performSearch(){
+      const request = await axios.get(`http://localhost:8000/post/?query=${this.search}`)
+      this.$emit('searchData',request.data)
     }
+
   },
   watch:{
     
@@ -60,12 +77,5 @@ export default {
 .nav-item.nav-link{
   cursor :pointer;
 }
-.navbar-right-side{
-  position: absolute;
-  right: 150px;
-  width: 200px;
-  align-items: center;
-  
-  
-}
+
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <Header/>
-  <router-view/>
+  <Header @searchData="printSearch($event)"/>
+  <router-view searchContent/>
 </template>
 
 <script>
@@ -11,6 +11,7 @@ export default {
   props:['changeHeader'],
   components: {
     Header,
+    searchContent:[]
     
   },
   created(){
@@ -20,6 +21,10 @@ export default {
   methods:{
     updateHeader(){
       this.$router.go(0)
+    },
+    printSearch(data){
+      
+      this.searchContent = data
     }
   }
 }

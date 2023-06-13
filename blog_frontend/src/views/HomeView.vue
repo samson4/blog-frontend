@@ -11,6 +11,7 @@ import Pagination from '@/components/Pagination.vue'
 
 export default {
   name: 'HomeView',
+  props:['searchContent'],
   components: {
     Article,
     Pagination
