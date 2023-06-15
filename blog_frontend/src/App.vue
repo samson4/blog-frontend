@@ -1,6 +1,6 @@
 <template>
   <Header @searchData="printSearch($event)"/>
-  <router-view searchContent/>
+  <router-view />
 </template>
 
 <script>
@@ -8,10 +8,9 @@ import Header from './components/Header.vue'
 
 export default {
   name: 'App',
-  props:['changeHeader'],
   components: {
     Header,
-    searchContent:[]
+    searchContent:''
     
   },
   created(){
@@ -24,7 +23,8 @@ export default {
     },
     printSearch(data){
       
-      this.searchContent = data
+      this.searchContent=data
+      console.log(this.searchContent)
     }
   }
 }

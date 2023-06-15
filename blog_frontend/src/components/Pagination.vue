@@ -27,15 +27,15 @@ export default {
     methods:{
         async getPages(){
            const response = await axios.get('http://localhost:8000/')
-            console.log(response.data)
+            
             this.count = response.data.count
             this.prev_link = response.data.previous
             this.next_link =response.data.next
-            // console.log(this.next_link)
+            
         },
         nextpage(pnum){
             this.$emit("next",pnum)
-            console.log(this.next_link)
+            
            
         }
     },

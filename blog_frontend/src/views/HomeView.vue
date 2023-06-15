@@ -11,7 +11,7 @@ import Pagination from '@/components/Pagination.vue'
 
 export default {
   name: 'HomeView',
-  props:['searchContent'],
+  
   components: {
     Article,
     Pagination
@@ -31,7 +31,9 @@ export default {
   
   },
   methods:{
-
+    cons(){
+      console.log(this.searchContent)
+    }
   }
 }
 </script>

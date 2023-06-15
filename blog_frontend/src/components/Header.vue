@@ -15,8 +15,10 @@
 
         <div class="mx-auto">
           <form @submit.prevent="performSearch()">
-            <label for="search" >Search</label>
-            <input type="text" name="search" id="search" v-model="search">
+            <div>
+              <input type="text" name="search" id="search" placeholder="Search" v-model="search">
+              <label class="search ml-4" for="search" ><i class="fas fa-search"></i></label>
+            </div>
           </form>
         </div>
 
@@ -62,6 +64,7 @@ export default {
     },
     async performSearch(){
       const request = await axios.get(`http://localhost:8000/post/?query=${this.search}`)
+      this.$store.commit("searchdata",request.data)
       this.$emit('searchData',request.data)
     }
 
@@ -73,9 +76,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .nav-item.nav-link{
-  cursor :pointer;
+  
+}
+.search{
+  color: #f1f1f1;
+  background-color: inherit;
 }
 
 </style>

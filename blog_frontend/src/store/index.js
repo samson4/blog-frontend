@@ -6,6 +6,8 @@ export default createStore({
     isLoading:false,
     token:null,
     todos:[],
+    searchdata:[]
+    
 
   },
   getters: {
@@ -33,6 +35,9 @@ export default createStore({
       sessionStorage.removeItem('access')
       sessionStorage.removeItem('refresh')
       state.token=null
+    },
+    searchdata(state,requestData){
+      state.searchdata = requestData
     }
   },
   actions: {

@@ -13,11 +13,10 @@
     <p class="article-content">{{post.content}} </p>
   </div>
 </article>
-
     </div>
     <Pagination @next='fetchNext($event)'/>
   </div>
-  
+
 </template>
 
 <script>
@@ -29,10 +28,12 @@ export default {
   components:{
     Pagination
   },
+  props:['searchContent'],
   data(){
     return{
       blogPosts:[],
       moment,
+      searchdata:[]
     }
   },
   async created(){
@@ -40,14 +41,32 @@ export default {
     const response = await axios.get("http://localhost:8000/")
     const response_data = response.data
     this.blogPosts = response_data.results
+    
+    
+   
   },
+  computed:{
+    computesearch(){
+      if (this.$store.state.searchdata.length !== 0) {
+      this.blogPosts = this.$store.state.searchdata.results
+    }
+    }
+    
+  },
+  watch:{
+    computesearch(newval,oldval){
+      console.log(oldval,newval)
+    }
+  },
+
   methods:{
     async fetchNext(pnum){
       console.log(pnum)
       const response = await axios.get(`http://localhost:8000/?page=${pnum}`)
       this.blogPosts = response.data.results
-      console.log(response.data)
-    }
+     
+    },
+  
   }
 }
 </script>
